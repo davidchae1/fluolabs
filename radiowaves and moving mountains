@@ -1,0 +1,30 @@
+#sketch.py
+t = 0
+inc = .01
+def setup():
+    size(600, 600)
+    frameRate(60) 
+                           
+def draw():
+    global t
+    background(0)
+    stroke(255)
+    # random line
+    beginShape()
+    for i in range(width):
+        vertex(i, random(height)/2)
+    endShape()
+        
+    # smooth line
+    beginShape()
+    frameStart = t
+    noFill()
+    for i in range(width):
+        y = noise(t)
+        y = map(y, 0, 1, 0, height/2)
+        vertex(i, height - y)
+        t += inc
+    
+    t = frameStart + inc
+    endShape()
+    
