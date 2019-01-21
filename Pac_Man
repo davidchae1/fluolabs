@@ -1,0 +1,41 @@
+#sketch
+diameter = 80
+radradi = 45
+radradid = 315
+mouthspeed = 3
+speed = 2
+placementx = -40
+moveMouthpost = True
+def setup():
+    noStroke()
+    size(480, 120)
+    background(0)
+
+    fill(255, 255, 0)
+
+    
+def draw():
+    background(0)
+    global radradi, radradid, placementx, moveMouthpost
+    
+    #moveplacementx
+    placementx += speed
+    #checkifneededtomovemouthpositivelyornegatively
+    if radradi == 0:
+        moveMouthpost = False
+    
+    elif radradi == 45:
+        moveMouthpost = True
+    arc(placementx, 60, diameter, diameter, radians(radradi), radians(radradid))
+    
+    #movemouth
+    if moveMouthpost == False:
+        radradi += mouthspeed
+        radradid -= mouthspeed
+    elif moveMouthpost == True:
+        radradi -= mouthspeed
+        radradid += mouthspeed
+    
+    #checkboundary
+    if placementx == 540:
+        placementx = 0
